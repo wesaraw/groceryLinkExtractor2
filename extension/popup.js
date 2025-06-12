@@ -12,9 +12,20 @@ function downloadCSV(csv) {
   });
 }
 
+const countEl = document.getElementById('item-count');
+
+function updateCount() {
+  chrome.storage.local.get({ results: [] }, (data) => {
+    countEl.textContent = data.results.length.toString();
+  });
+}
+
 document.getElementById('download').addEventListener('click', () => {
   chrome.storage.local.get({ results: [] }, (data) => {
     const csv = buildCSV(data.results);
     downloadCSV(csv);
   });
 });
+
+document.addEventListener('DOMContentLoaded', updateCount);
+chrome.storage.onChanged.addListener(updateCount);
