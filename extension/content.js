@@ -1,4 +1,4 @@
-setTimeout(() => {
+function scrapeItems() {
   const containers = document.querySelectorAll(
     '.product-grid-cell_price-container'
   );
@@ -16,5 +16,20 @@ setTimeout(() => {
   });
   if (items.length) {
     chrome.runtime.sendMessage({ items });
+    return true;
   }
-}, 1000);
+  return false;
+}
+
+let attempts = 0;
+const maxAttempts = 10;
+
+function tryScrape() {
+  attempts += 1;
+  if (scrapeItems() || attempts >= maxAttempts) {
+    clearInterval(intervalId);
+  }
+}
+
+const intervalId = setInterval(tryScrape, 1000);
+tryScrape();
