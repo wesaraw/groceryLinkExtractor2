@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Stop & Shop Product Price Collector",
+  "description": "Collect product names and prices from Stop & Shop and export to CSV.",
+  "version": "1.0",
+  "permissions": [
+    "tabs",
+    "scripting",
+    "storage",
+    "downloads"
+  ],
+  "host_permissions": ["https://stopandshop.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://stopandshop.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Stop & Shop Price Collector"
+  }
+}
