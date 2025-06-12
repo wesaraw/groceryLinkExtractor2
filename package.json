@@ -1,0 +1,9 @@
+{
+  "name": "grocery-link-extractor",
+  "version": "1.0.0",
+  "description": "Chrome extension to collect product names and prices from Stop & Shop.",
+  "scripts": {
+    "test": "echo \"No tests have been defined\""
+  },
+  "license": "MIT"
+}
