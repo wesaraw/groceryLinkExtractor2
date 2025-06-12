@@ -9,13 +9,19 @@
     "storage",
     "downloads"
   ],
-  "host_permissions": ["https://stopandshop.com/*"],
+  "host_permissions": [
+    "https://stopandshop.com/*",
+    "https://www.stopandshop.com/*"
+  ],
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "matches": ["https://stopandshop.com/*"],
+      "matches": [
+        "https://stopandshop.com/*",
+        "https://www.stopandshop.com/*"
+      ],
       "js": ["content.js"],
       "run_at": "document_idle"
     }
